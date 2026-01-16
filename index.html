@@ -419,6 +419,82 @@
             box-shadow: 0 30px 60px rgba(0, 212, 255, 0.2);
         }
 
+        .featured-project-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(123, 44, 191, 0.15));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 30px;
+            padding: 4.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            grid-column: 1 / -1;
+            margin-bottom: 2rem;
+            animation: featuredPulse 3s ease-in-out infinite;
+        }
+
+        .featured-project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffd700, #ff8c00, #7b2cbf, #00d4ff);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .featured-project-card::after {
+            content: '🏆';
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .featured-project-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 40px 80px rgba(255, 215, 0, 0.3), 0 0 100px rgba(255, 215, 0, 0.1);
+        }
+
+        @keyframes featuredPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hackathon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #0a0a0a;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
         .project-links {
             margin-top: 2rem;
             display: flex;
@@ -668,13 +744,15 @@
         <div class="achievements-grid">
             <div class="achievement-card">
                 <div class="achievement-icon">🏆</div>
-                <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: #ffd700;">Hackathon Participant</h3>
+                <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: #ffd700;">Hackathon Winner</h3>
                 <p style="margin-bottom: 1rem; line-height: 1.8; font-size: 1.1rem;">
-                    Successfully participated in HackUPC 2024 in Barcelona, demonstrating problem-solving skills, 
-                    teamwork, and the ability to develop innovative solutions under time constraints.
+                    Winner of HARVIA's Smart Sauna Experience Challenge with my team at <strong>Junction 2025: Utopia & Dystopia</strong> 
+                    in November 2025. Developed SauNova, an AI-powered smart sauna companion that combines 
+                    retrieval-augmented generation with personalized machine learning recommendations.
                 </p>
                 <p style="opacity: 0.8; font-size: 1rem;">
-                    Gained hands-on experience in rapid prototyping, collaborative coding, and presenting technical solutions to judges.
+                    Recognized for innovative problem-solving and technical excellence at one of Europe's 
+                    largest hackathons, demonstrating expertise in AI, full-stack development, and collaborative engineering.
                 </p>
             </div>
         </div>
@@ -734,6 +812,27 @@
     <section class="section">
         <h2>Featured Projects</h2>
         <div class="projects-grid">
+            <div class="featured-project-card">
+                <span class="hackathon-badge">🏆 Hackathon Winner</span>
+                <h3 style="font-size: 3rem; margin-bottom: 1.5rem; color: #ffd700; font-weight: 700;">SauNova</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.3rem; font-weight: 500;">
+                    An AI-powered smart sauna companion that combines retrieval-augmented generation (RAG) with personalized machine learning recommendations. 
+                    SauNova provides intelligent coaching by grounding responses in sauna science research while delivering customized temperature, humidity, 
+                    and session length recommendations based on user physiology and goals.
+                </p>
+                <p style="margin-bottom: 1rem; line-height: 1.7; font-size: 1.1rem; opacity: 0.9;">
+                    The platform features RAG chat capabilities that draw from scientific PDFs for evidence-based guidance, a PyTorch neural network 
+                    for personalized recommendations, and comprehensive session telemetry with dual-axis visualizations and AI-generated briefings. 
+                    Built with a FastAPI backend, Flutter mobile app, and TypeScript bridge for seamless integration.
+                </p>
+                <p style="opacity: 0.8; margin-bottom: 2rem; font-size: 1rem;">
+                    <strong>Technologies:</strong> Python, FastAPI, PyTorch, LangChain, OpenAI GPT-4o-mini, FAISS, Flutter, TypeScript, Node.js, 
+                    scikit-learn, pandas, NumPy, matplotlib, HuggingFace Transformers
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/SultanLikedIt/SauNova" class="project-link" target="_blank" rel="noopener">📂 Source Code</a>
+                </div>
+            </div>
             <div class="project-card">
                 <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: #00d4ff;">ITia</h3>
                 <p style="margin-bottom: 1.5rem; line-height: 1.7; font-size: 1.1rem;">
@@ -792,7 +891,7 @@
                     entry.target.style.transform = 'translateY(0)';
                     
                     // Add stagger animation for cards
-                    const cards = entry.target.querySelectorAll('.skill-card, .project-card, .achievement-card');
+                    const cards = entry.target.querySelectorAll('.skill-card, .project-card, .achievement-card, .featured-project-card');
                     cards.forEach((card, index) => {
                         setTimeout(() => {
                             card.style.opacity = '1';
@@ -811,7 +910,7 @@
             observer.observe(section);
             
             // Initially hide cards for stagger effect
-            const cards = section.querySelectorAll('.skill-card, .project-card, .achievement-card');
+            const cards = section.querySelectorAll('.skill-card, .project-card, .achievement-card, .featured-project-card');
             cards.forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
@@ -861,24 +960,34 @@
         }
 
         // Enhanced hover effects
-        document.querySelectorAll('.skill-card, .project-card, .achievement-card').forEach(card => {
+        document.querySelectorAll('.skill-card, .project-card, .achievement-card, .featured-project-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-20px) scale(1.02)';
-                card.style.zIndex = '10';
-                
-                // Add glow effect
-                const cardType = card.classList.contains('achievement-card') ? 'achievement' : 'normal';
-                if (cardType === 'achievement') {
-                    card.style.boxShadow = '0 30px 60px rgba(255, 215, 0, 0.3), 0 0 50px rgba(255, 215, 0, 0.1)';
+                if (card.classList.contains('featured-project-card')) {
+                    card.style.transform = 'translateY(-20px) scale(1.02)';
+                    card.style.zIndex = '10';
+                    card.style.boxShadow = '0 40px 80px rgba(255, 215, 0, 0.3), 0 0 100px rgba(255, 215, 0, 0.1)';
                 } else {
-                    card.style.boxShadow = '0 30px 60px rgba(0, 212, 255, 0.3), 0 0 50px rgba(0, 212, 255, 0.1)';
+                    card.style.transform = 'translateY(-20px) scale(1.02)';
+                    card.style.zIndex = '10';
+                    
+                    // Add glow effect
+                    const cardType = card.classList.contains('achievement-card') ? 'achievement' : 'normal';
+                    if (cardType === 'achievement') {
+                        card.style.boxShadow = '0 30px 60px rgba(255, 215, 0, 0.3), 0 0 50px rgba(255, 215, 0, 0.1)';
+                    } else {
+                        card.style.boxShadow = '0 30px 60px rgba(0, 212, 255, 0.3), 0 0 50px rgba(0, 212, 255, 0.1)';
+                    }
                 }
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
+                if (card.classList.contains('featured-project-card')) {
+                    card.style.transform = 'translateY(0) scale(1)';
+                } else {
+                    card.style.transform = 'translateY(0) scale(1)';
+                }
                 card.style.zIndex = '1';
-                card.style.boxShadow = 'none';
+                card.style.boxShadow = '';
             });
         });
 
